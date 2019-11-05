@@ -1,0 +1,19 @@
+{
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2017,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": [
+        "css-modules"
+    ],
+    "extends": [
+        "plugin:css-modules/recommended"
+    ],
+    "settings": {
+        "import/parser": "babel-eslint"
+    }
+}

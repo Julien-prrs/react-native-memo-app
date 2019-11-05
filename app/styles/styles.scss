@@ -1,0 +1,11 @@
+@import './components/buttons.scss';
+
+.view {
+    align-items:     center;
+    flex:            1;
+    justify-content: center;
+
+    &-test {
+        background: coral;
+    }
+}
