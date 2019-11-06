@@ -1,9 +1,11 @@
-import HomeScreen from "./home";
-import TestScreen from "./test";
+import HomeScreen from "./home"
+import SingleScreen from "./single"
+import NewItemScreen from "./new-item"
 
 const views = {
     HomeScreen,
-    TestScreen
+    SingleScreen,
+    NewItemScreen
 }
 
 export default views;

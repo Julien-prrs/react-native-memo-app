@@ -1,11 +1,11 @@
 import { registerRootComponent } from 'expo'
 import React from 'react'
-import Navigation from './config/router'
+import Router from './config/router'
 
 class App extends React.Component {
     render() {
         return (
-            <Navigation/>
+            <Router/>
         )
     }
 }

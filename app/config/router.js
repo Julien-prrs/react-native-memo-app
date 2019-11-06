@@ -2,19 +2,22 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
 import views from '../screens'
 
-const MainNavigator = createStackNavigator({
+const Router = createStackNavigator({
     Home: {
-        screen: views.HomeScreen,
+        screen: views.HomeScreen
     },
-    Test: {
-        screen: views.TestScreen
+    Single: {
+        screen: views.SingleScreen,
     },
+    NewItem: {
+        screen: views.NewItemScreen
+    }
 },
 {
+    initialRouteName: 'Home',
     navigationOptions: {
-        headerLeft: null,
-        headerTintColor: 'blue',
+        headerLeft: null
     },
 });
 
-export default createAppContainer(MainNavigator);
+export default createAppContainer(Router);
