@@ -70,24 +70,24 @@ export default class Editor extends React.Component {
                     iconSet={[
                         {
                             type: 'tool',
-                            iconArray: [
-                                {
-                                    toolTypeText: 'body',
-                                    buttonTypes: 'tag',
-                                    iconComponent: <View style={styles.editorIcon}><Ionicons name="ios-add" size={25} color="#2371eb"/></View>
-                                },
-                            ]
+                            iconArray: [{
+                                toolTypeText: 'bold',
+                                buttonTypes: 'style',
+                                iconComponent: <Text style={styles.toolbarButton}>bold</Text>
+                            }]
                         },
                         {
                             type: 'seperator'
                         },
                         {
                             type: 'tool',
-                            iconArray: [{
-                                toolTypeText: 'bold',
-                                buttonTypes: 'style',
-                                iconComponent: <Text style={styles.toolbarButton}>bold</Text>
-                            }]
+                            iconArray: [
+                                {
+                                    toolTypeText: 'text',
+                                    buttonTypes: 'tag',
+                                    iconComponent: <View style={styles.editorIcon}><Ionicons name="ios-add" size={25} color="#2371eb"/></View>
+                                },
+                            ]
                         },
                         {
                             type: 'tool',

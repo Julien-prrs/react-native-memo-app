@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput } from 'react-native'
+import { View, StatusBar, TextInput } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import Editor from '../components/editor'
 import styles from '../styles'
@@ -12,6 +12,7 @@ export default class NewItemScreen extends React.Component {
     render() {
         return (
             <View style={styles.base.bodyNoheader}>
+                <StatusBar hidden />
                 <View style={styles.newItem.rowTitle}>
                     <TextInput style={styles.newItem.title} placeholder="Saisissez un titre" />
                     <View style={styles.newItem.headerContainerIcons}>
