@@ -16,34 +16,23 @@ export default StyleSheet.create({
     editorContent: {
         fontSize: 16
     },
-    editorIcon: {
-        width: 25,
-        height: 25,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
     toolbar: {
         padding: 5,
         borderRadius: 0,
-        height: 45
+        justifyContent: 'flex-start'
     },
-    toolbarButton: {
-        fontSize: 20,
-        color: 'black',
-        width: 28,
-        height: 28,
-        textAlign: 'center'
+    toolbarContainerIcon: {
+        paddingLeft: 10,
+        paddingRight: 10
     },
-    italicButton: {
-        fontStyle: 'italic'
+    toolbarIcon: {
+        width: 35,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    boldButton: {
-        fontWeight: 'bold'
-    },
-    underlineButton: {
-        textDecorationLine: 'underline'
-    },
-    lineThroughButton: {
-        textDecorationLine: 'line-through'
+    toolbarIconImage: {
+        width: 30,
+        height: 30
     },
 });

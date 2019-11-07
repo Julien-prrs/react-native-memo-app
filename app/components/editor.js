@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, Keyboard, TouchableWithoutFeedback, Text, KeyboardAvoidingView } from 'react-native'
+import { View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, Image } from 'react-native'
 import CNRichTextEditor, { CNToolbar, getInitialObject, getDefaultStyles } from "react-native-cn-richtext-editor"
-import { Ionicons } from '@expo/vector-icons'
 import styles from '../styles/components/editor.js'
 
 const defaultStyles = getDefaultStyles();
@@ -9,7 +8,7 @@ const defaultStyles = getDefaultStyles();
 export default class Editor extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             selectedTag : 'body',
             selectedStyles : [],
@@ -36,9 +35,10 @@ export default class Editor extends React.Component {
     }
 
     onValueChanged = (value) => {
-        this.setState({
-            value: value
-        });
+        this.props.parent.onContentChange(value);
+        // this.setState({
+        //     value: value
+        // });
     }
 
     render() {
@@ -61,19 +61,15 @@ export default class Editor extends React.Component {
                 </TouchableWithoutFeedback>
                 <CNToolbar
                     style={styles.toolbar}
-                    iconSetContainerStyle={{
-                        flexGrow: 1,
-                        justifyContent: 'space-evenly',
-                        alignItems: 'center',
-                    }}
-                    size={30}
+                    iconSetContainerStyle={styles.toolbarContainerIcon}
+                    selectedBackgroundColor='#f5f5f5'
                     iconSet={[
                         {
                             type: 'tool',
                             iconArray: [{
                                 toolTypeText: 'bold',
                                 buttonTypes: 'style',
-                                iconComponent: <Text style={styles.toolbarButton}>bold</Text>
+                                iconComponent: <View style={styles.toolbarIcon}><Image style={styles.toolbarIconImage} source={require('../assets/images/icn-editor__bold.png')} /></View>
                             }]
                         },
                         {
@@ -83,9 +79,9 @@ export default class Editor extends React.Component {
                             type: 'tool',
                             iconArray: [
                                 {
-                                    toolTypeText: 'text',
+                                    toolTypeText: 'body',
                                     buttonTypes: 'tag',
-                                    iconComponent: <View style={styles.editorIcon}><Ionicons name="ios-add" size={25} color="#2371eb"/></View>
+                                    iconComponent: <View style={styles.toolbarIcon}><Image style={styles.toolbarIconImage} source={require('../assets/images/icn-editor__text.png')} /></View>
                                 },
                             ]
                         },
@@ -95,7 +91,7 @@ export default class Editor extends React.Component {
                                 {
                                     toolTypeText: 'ul',
                                     buttonTypes: 'tag',
-                                    iconComponent: <Text style={styles.toolbarButton}>ul</Text>
+                                    iconComponent: <View style={styles.toolbarIcon}><Image style={styles.toolbarIconImage} source={require('../assets/images/icn-editor__ul.png')} /></View>
                                 }
                             ]
                         },
@@ -105,7 +101,7 @@ export default class Editor extends React.Component {
                                 {
                                     toolTypeText: 'ol',
                                     buttonTypes: 'tag',
-                                    iconComponent: <Text style={styles.toolbarButton}>ol</Text>
+                                    iconComponent: <View style={styles.toolbarIcon}><Image style={styles.toolbarIconImage} source={require('../assets/images/icn-editor__ol.png')} /></View>
                                 }
                             ]
                         },

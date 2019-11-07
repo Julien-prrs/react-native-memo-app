@@ -31,13 +31,10 @@ export default StyleSheet.create({
         flexWrap: 'wrap',
     },
     icnWrapper: {
+        borderRadius: 7,
         justifyContent: 'center',
         alignItems: 'center',
         width: 35,
         height: 35,
-        marginLeft: 7
-    },
-    icnWrapperFirst: {
-        marginLeft: 0
     }
 });
