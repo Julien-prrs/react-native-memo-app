@@ -14,12 +14,6 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: '700'
     },
-    list: {
-        // paddingBottom: 20,
-        // paddingTop: 20,
-        // paddingLeft: 15,
-        // paddingRight: 15
-    },
     btnFixed: {
         position: 'absolute',
         width: 60,

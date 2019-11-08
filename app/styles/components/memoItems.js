@@ -6,9 +6,6 @@ export default StyleSheet.create({
         borderBottomColor: '#f2f3f7',
         borderBottomWidth: 1
     },
-    itemWrapperLast:{
-        // Style here
-    },
     item: {
         padding: 20
     },
@@ -17,11 +14,14 @@ export default StyleSheet.create({
         fontWeight: '700',
         marginBottom: 5
     },
+    itemTitleUnset: {
+        fontStyle: 'italic'
+    },
     itemExcerpt: {
         opacity: 0.4,
         fontSize: 14
     },
-    btnDelete: {
+    btnAction: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'

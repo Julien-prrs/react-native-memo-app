@@ -51,7 +51,7 @@ export default class HomeScreen extends React.Component {
         const filtered = this.state.memos.filter((el) => { return el.id !== id })
         await AsyncStorage.setItem('memos', JSON.stringify(filtered.reverse()));
         
-        this.setState({ memos: filtered });
+        this.setState({ memos: filtered.reverse() });
     }
 
     loadMemos = async () => {
@@ -75,7 +75,6 @@ export default class HomeScreen extends React.Component {
         return (
             <View style={styles.base.body}>
                 <FlatList
-                    contentContainerStyle={styles.base.list}
                     ref={(ref) => { this.flatListMemo = ref; }}
                     data={this.state.memos}
                     extraData={this.state}

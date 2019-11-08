@@ -14,16 +14,19 @@ export default class MemoItem extends React.Component {
     swipeoutBtns = [{
         backgroundColor: '#f7f8fc',
         underlayColor: '#f7f8fc',
-        component: <View style={styles.btnDelete}><Ionicons name="ios-trash" size={30} color="#f04a3e" /><Text style={styles.btnLabel}>Supprimer</Text></View>,
+        component: <View style={styles.btnAction}><Ionicons name="ios-trash" size={30} color="#f04a3e" /><Text style={styles.btnLabel}>Supprimer</Text></View>,
         type: 'delete',
         onPress: () => {
             this.onPressDelete();
         },
-        
     }]
     
     componentDidMount() {
         this.setExcerpt();
+    }
+
+    _onPress() {
+        console.log(`Edit ${this.state.id}`);
     }
 
     onPressDelete = () => {
@@ -31,25 +34,27 @@ export default class MemoItem extends React.Component {
     }
 
     setExcerpt() {
-        var tagsContent = [];
+        var output = [];
 
         for (const key in this.state['content']) {
             for (const subKey in this.state['content'][key].content) {
                 const el = this.state['content'][key].content[subKey];
-                tagsContent.push(el.text);
+                output.push(el.text);
             }
         }
 
+        output = output.join('');
+
         this.setState({
-            excerpt: tagsContent.join('').substring(0, 40) + '...'
+            excerpt: output.length > 40 ? output.substring(0, 40) + '...' : output
         })
     }
 
     render() {
         return (
-            <Swipeout style={styles.itemWrapper} sensitivity={100} buttonWidth={100} autoClose={true} right={this.swipeoutBtns}>
+            <Swipeout style={styles.itemWrapper} buttonWidth={100} autoClose={true} right={this.swipeoutBtns}>
                 <View style={styles.item}>
-                    <Text style={styles.itemTitle}>{ this.state.title || 'Sans titre' }</Text>
+                    <Text style={this.state.title ? styles.itemTitle : [styles.itemTitle, styles.itemTitleUnset]}>{ this.state.title || 'Sans titre' }</Text>
                     <Text style={styles.itemExcerpt}>{ this.state.excerpt }</Text>
                 </View>
             </Swipeout>
