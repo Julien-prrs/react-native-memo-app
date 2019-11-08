@@ -4,7 +4,6 @@ export default StyleSheet.create({
     body: {
         flex: 1,
         backgroundColor: '#f2f3f7',
-        padding: 20
     },
     bodyNoheader: {
         flex: 1,
@@ -15,13 +14,19 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: '700'
     },
+    list: {
+        // paddingBottom: 20,
+        // paddingTop: 20,
+        // paddingLeft: 15,
+        // paddingRight: 15
+    },
     btnFixed: {
         position: 'absolute',
         width: 60,
         height: 60,
         right: 25,
         bottom: 25,
-        backgroundColor: 'white',
+        backgroundColor: '#2371eb',
         borderRadius: 50,
         flex: 1,
         alignItems: 'center',

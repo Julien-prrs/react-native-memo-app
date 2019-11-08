@@ -19,11 +19,18 @@ export default class HomeScreen extends React.Component {
 
     static navigationOptions = {
         title: 'Vos notes',
+        headerStyle: {
+            backgroundColor: '#2371eb',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+        },
     };
 
     componentDidUpdate() {
         this.flatListMemo.scrollToOffset({
-            animated: false,
+            animated: true,
             y: 0
         });
     }
@@ -40,11 +47,17 @@ export default class HomeScreen extends React.Component {
         this.props.navigation.navigate('NewItem')
     }
 
+    onDeleteItem = async(id) => {
+        const filtered = this.state.memos.filter((el) => { return el.id !== id })
+        await AsyncStorage.setItem('memos', JSON.stringify(filtered.reverse()));
+        
+        this.setState({ memos: filtered });
+    }
+
     loadMemos = async () => {
         const memosObject = JSON.parse(await AsyncStorage.getItem('memos'));
         const memo = _values(memosObject).reverse() || [];
 
-        this.setState({ memos: null })
         this.setState({ memos: memo })
     }
 
@@ -62,13 +75,15 @@ export default class HomeScreen extends React.Component {
         return (
             <View style={styles.base.body}>
                 <FlatList
+                    contentContainerStyle={styles.base.list}
                     ref={(ref) => { this.flatListMemo = ref; }}
                     data={this.state.memos}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={(item, index) => <MemoItem data={item.item}/>}
+                    extraData={this.state}
+                    keyExtractor={(item, index) => item.id}
+                    renderItem={(item, index) => <MemoItem onDelete={this.onDeleteItem} data={item.item}/>}
                 />
-                <TouchableHighlight style={styles.base.btnFixed} underlayColor="white" onPress={this.onPressNew}>
-                    <Ionicons name="ios-add" size={32} color="#2371eb" />
+                <TouchableHighlight style={styles.base.btnFixed} underlayColor="#2371eb" onPress={this.onPressNew}>
+                    <Ionicons name="ios-add" size={32} color="white" />
                 </TouchableHighlight>
             </View>
         )

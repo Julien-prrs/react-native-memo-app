@@ -1,12 +1,16 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-    item: {
-        marginBottom: 20,
-        padding: 20,
+    itemWrapper: {
         backgroundColor: 'white',
-        borderRadius: 10,
-        elevation: 2,
+        borderBottomColor: '#f2f3f7',
+        borderBottomWidth: 1
+    },
+    itemWrapperLast:{
+        // Style here
+    },
+    item: {
+        padding: 20
     },
     itemTitle: {
         fontSize: 18,
@@ -16,5 +20,16 @@ export default StyleSheet.create({
     itemExcerpt: {
         opacity: 0.4,
         fontSize: 14
+    },
+    btnDelete: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    btnLabel: {
+        fontSize: 10,
+        color: 'black',
+        opacity: 0.6,
+        textAlign: 'center'
     }
 });

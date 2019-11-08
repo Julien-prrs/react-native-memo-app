@@ -36,9 +36,6 @@ export default class Editor extends React.Component {
 
     onValueChanged = (value) => {
         this.props.parent.onContentChange(value);
-        // this.setState({
-        //     value: value
-        // });
     }
 
     render() {
