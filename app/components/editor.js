@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, Image } from 'react-native'
-import CNRichTextEditor, { CNToolbar, getInitialObject, getDefaultStyles } from "react-native-cn-richtext-editor"
+import CNRichTextEditor, { CNToolbar, getDefaultStyles } from "react-native-cn-richtext-editor"
 import styles from '../styles/components/editor.js'
 
 const defaultStyles = getDefaultStyles();
@@ -11,11 +11,8 @@ export default class Editor extends React.Component {
 
         this.state = {
             selectedTag : 'body',
-            selectedStyles : [],
-            value: [getInitialObject()]
+            selectedStyles : []
         };
-
-        console.log(this.props.parent.state.content);
 
         this.editor = null;
     }

@@ -2,6 +2,7 @@ import React from 'react'
 import { View, TextInput, TouchableHighlight, AsyncStorage } from 'react-native'
 import Editor from '../components/editor'
 import { Ionicons } from '@expo/vector-icons';
+import _values from 'lodash.values'
 import styles from '../styles'
 
 export default class EditScreen extends React.Component {
@@ -21,17 +22,13 @@ export default class EditScreen extends React.Component {
 
         if (id) {
             this.getMemosFromStorage().then(memos => {
-                const currentMemo = memos.filter(memo => memo.id === id )
+                const currentMemo = _values(memos).filter(memo => memo.id === id )
 
                 this.props.memos = memos;
                 this.setState(...currentMemo)
-
-                console.log(this.state.content)
             }); 
         } else {
-            // If param id is null
-            // 1. Generate uniqueID
-            // 2. Create new memo state
+            // TODO: Build edit page for new memo item (replace new-item.js)
         }
     }
 
@@ -51,7 +48,14 @@ export default class EditScreen extends React.Component {
         })
     }
 
-    onSave = () => {
+    onSave = async () => {
+        // TODO: update edited item
+        this.props.navigation.goBack();
+    }
+
+    persistMemos = async (memos) => {
+        global.hasUpdate = true;
+        await AsyncStorage.setItem('memos', JSON.stringify(memos));
         this.props.navigation.goBack();
     }
 

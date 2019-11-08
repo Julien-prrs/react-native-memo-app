@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, TextInput, TouchableHighlight, AsyncStorage } from 'react-native'
+import { getInitialObject } from "react-native-cn-richtext-editor"
 import Editor from '../components/editor'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles'
@@ -8,6 +9,13 @@ export default class NewItemScreen extends React.Component {
     static navigationOptions = {
         header: null
     };
+
+    state = {
+        id: '',
+        title: '',
+        content: [getInitialObject()],
+        createdAt: ''
+    }
 
     generateUniqueId() {
         return '_' + Math.random().toString(36).substr(2, 9);
