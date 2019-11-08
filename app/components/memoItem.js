@@ -21,9 +21,28 @@ export default class MemoItem extends React.Component {
         },
         
     }]
+    
+    componentDidMount() {
+        this.setExcerpt();
+    }
 
     onPressDelete = () => {
         this.props.onDelete(this.state.id);
+    }
+
+    setExcerpt() {
+        var tagsContent = [];
+
+        for (const key in this.state['content']) {
+            for (const subKey in this.state['content'][key].content) {
+                const el = this.state['content'][key].content[subKey];
+                tagsContent.push(el.text);
+            }
+        }
+
+        this.setState({
+            excerpt: tagsContent.join('').substring(0, 40) + '...'
+        })
     }
 
     render() {
@@ -31,7 +50,7 @@ export default class MemoItem extends React.Component {
             <Swipeout style={styles.itemWrapper} sensitivity={100} buttonWidth={100} autoClose={true} right={this.swipeoutBtns}>
                 <View style={styles.item}>
                     <Text style={styles.itemTitle}>{ this.state.title || 'Sans titre' }</Text>
-                    <Text style={styles.itemExcerpt}>Content</Text>
+                    <Text style={styles.itemExcerpt}>{ this.state.excerpt }</Text>
                 </View>
             </Swipeout>
         )
