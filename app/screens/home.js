@@ -47,10 +47,14 @@ export default class HomeScreen extends React.Component {
         this.props.navigation.navigate('NewItem')
     }
 
-    onDeleteItem = async(id) => {
+    onPressOpen = (id) => {
+        this.props.navigation.navigate('Edit', {id: id})
+    }
+
+    onPressDelete = async(id) => {
         const filtered = this.state.memos.filter((el) => { return el.id !== id })
         await AsyncStorage.setItem('memos', JSON.stringify(filtered.reverse()));
-        
+
         this.setState({ memos: filtered.reverse() });
     }
 
@@ -79,7 +83,7 @@ export default class HomeScreen extends React.Component {
                     data={this.state.memos}
                     extraData={this.state}
                     keyExtractor={(item, index) => item.id}
-                    renderItem={(item, index) => <MemoItem onDelete={this.onDeleteItem} data={item.item}/>}
+                    renderItem={(item, index) => <MemoItem onOpen={this.onPressOpen} onDelete={this.onPressDelete} data={item.item} /> }
                 />
                 <TouchableHighlight style={styles.base.btnFixed} underlayColor="#2371eb" onPress={this.onPressNew}>
                     <Ionicons name="ios-add" size={32} color="white" />

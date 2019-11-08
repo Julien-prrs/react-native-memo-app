@@ -7,7 +7,10 @@ const Router = createStackNavigator({
         screen: views.HomeScreen
     },
     Single: {
-        screen: views.SingleScreen,
+        screen: views.SingleScreen
+    },
+    Edit: {
+        screen: views.EditScreen
     },
     NewItem: {
         screen: views.NewItemScreen

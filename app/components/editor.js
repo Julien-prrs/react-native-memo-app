@@ -15,6 +15,8 @@ export default class Editor extends React.Component {
             value: [getInitialObject()]
         };
 
+        console.log(this.props.parent.state.content);
+
         this.editor = null;
     }
 
@@ -47,7 +49,7 @@ export default class Editor extends React.Component {
                             ref={input => this.editor = input}
                             onSelectedTagChanged={this.onSelectedTagChanged}
                             onSelectedStyleChanged={this.onSelectedStyleChanged}
-                            value={this.state.value}
+                            value={this.props.parent.state.content}
                             style={styles.editor}
                             textInputStyle={styles.editorContent}
                             styleList={defaultStyles}

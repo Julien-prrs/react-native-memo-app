@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableWithoutFeedback } from 'react-native'
 import Swipeout from 'react-native-swipeout'
 import styles from '../styles/components/memoItems.js'
 import { Ionicons } from '@expo/vector-icons'
@@ -25,8 +25,8 @@ export default class MemoItem extends React.Component {
         this.setExcerpt();
     }
 
-    _onPress() {
-        console.log(`Edit ${this.state.id}`);
+    onPressOpen = () => {
+        this.props.onOpen(this.state.id);
     }
 
     onPressDelete = () => {
@@ -53,10 +53,12 @@ export default class MemoItem extends React.Component {
     render() {
         return (
             <Swipeout style={styles.itemWrapper} buttonWidth={100} autoClose={true} right={this.swipeoutBtns}>
-                <View style={styles.item}>
-                    <Text style={this.state.title ? styles.itemTitle : [styles.itemTitle, styles.itemTitleUnset]}>{ this.state.title || 'Sans titre' }</Text>
-                    <Text style={styles.itemExcerpt}>{ this.state.excerpt }</Text>
-                </View>
+                <TouchableWithoutFeedback onPress={() => this.onPressOpen()}>
+                    <View style={styles.item}>
+                        <Text style={this.state.title ? styles.itemTitle : [styles.itemTitle, styles.itemTitleUnset]}>{ this.state.title || 'Sans titre' }</Text>
+                        <Text style={styles.itemExcerpt}>{ this.state.excerpt }</Text>
+                    </View>
+                </TouchableWithoutFeedback>
             </Swipeout>
         )
     }
