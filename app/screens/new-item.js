@@ -14,7 +14,8 @@ export default class NewItemScreen extends React.Component {
         id: '',
         title: '',
         content: [getInitialObject()],
-        createdAt: ''
+        createdAt: '',
+        updatedAt: ''
     }
 
     generateUniqueId() {
@@ -35,13 +36,15 @@ export default class NewItemScreen extends React.Component {
 
     onSave = async() => {
         const ID = this.generateUniqueId()
+        const date = Date.now();
         const prevMemo = JSON.parse(await AsyncStorage.getItem('memos'))
         const newMemo = {
             [ID]: {
                 id: ID,
                 title: this.state.title,
                 content: this.state.content,
-                createdAt: Date.now()
+                createdAt: date,
+                updatedAt: date
             }
         }
 

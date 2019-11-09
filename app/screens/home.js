@@ -52,17 +52,18 @@ export default class HomeScreen extends React.Component {
     }
 
     onPressDelete = async(id) => {
-        const filtered = this.state.memos.filter((el) => { return el.id !== id })
-        await AsyncStorage.setItem('memos', JSON.stringify(filtered.reverse()));
+        const memosFiltered = this.state.memos.filter((el) => { return el.id !== id })
+        await AsyncStorage.setItem('memos', JSON.stringify(memosFiltered));
 
-        this.setState({ memos: filtered.reverse() });
+        this.setState({ memos: memosFiltered });
     }
 
     loadMemos = async () => {
         const memosObject = JSON.parse(await AsyncStorage.getItem('memos'));
-        const memo = _values(memosObject).reverse() || [];
+        const memos = _values(memosObject) || [];
+        const memosSorted = memos.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)); 
 
-        this.setState({ memos: memo })
+        this.setState({ memos: memosSorted })
     }
 
     clearMemos() {
@@ -81,7 +82,7 @@ export default class HomeScreen extends React.Component {
                 <FlatList
                     ref={(ref) => { this.flatListMemo = ref; }}
                     data={this.state.memos}
-                    extraData={this.state}
+                    extraData={this.state.memos}
                     keyExtractor={(item, index) => item.id}
                     renderItem={(item, index) => <MemoItem onOpen={this.onPressOpen} onDelete={this.onPressDelete} data={item.item} /> }
                 />

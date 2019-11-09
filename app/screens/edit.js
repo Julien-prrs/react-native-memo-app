@@ -14,7 +14,8 @@ export default class EditScreen extends React.Component {
         id: '',
         title: '',
         content: [],
-        createdAt: ''
+        createdAt: '',
+        updatedAt: ''
     }
 
     componentDidMount() {
@@ -24,7 +25,7 @@ export default class EditScreen extends React.Component {
             this.getMemosFromStorage().then(memos => {
                 const currentMemo = _values(memos).filter(memo => memo.id === id )
 
-                this.props.memos = memos;
+                this.memos = memos;
                 this.setState(...currentMemo)
             }); 
         } else {
@@ -48,13 +49,17 @@ export default class EditScreen extends React.Component {
         })
     }
 
-    onSave = async () => {
-        // TODO: update edited item
-        this.props.navigation.goBack();
+    onSave = () => {
+        this.state.updatedAt = Date.now();
+        this.memos[this.state.id] = this.state;
+
+        this.persistMemos(this.memos);
     }
 
     persistMemos = async (memos) => {
         global.hasUpdate = true;
+        console.log(this.state);
+        console.log(memos);
         await AsyncStorage.setItem('memos', JSON.stringify(memos));
         this.props.navigation.goBack();
     }
