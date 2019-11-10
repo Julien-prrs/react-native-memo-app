@@ -41,8 +41,6 @@ export default class MemoItem extends React.Component {
     setExcerpt() {
         var output = [];
 
-        console.log(this.state.content);
-
         for (const key in this.state.content) {
             for (const subKey in this.state.content[key].content) {
                 const el = this.state.content[key].content[subKey];
@@ -59,7 +57,7 @@ export default class MemoItem extends React.Component {
 
     render() {
         return (
-            <Swipeout style={styles.itemWrapper} buttonWidth={100} autoClose={true} right={this.swipeoutBtns}>
+            <Swipeout style={styles.itemWrapper} sensitivity={5} buttonWidth={100} autoClose={true} right={this.swipeoutBtns}>
                 <TouchableWithoutFeedback onPress={() => this.onPressOpen()}>
                     <View style={styles.item}>
                         <Text style={this.state.title ? styles.itemTitle : [styles.itemTitle, styles.itemTitleUnset]}>{ this.state.title || 'Sans titre' }</Text>
