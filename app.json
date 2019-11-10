@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ReactNative Memo",
-    "slug": "ReactNativeMemoApp",
+    "name": "Memo - ReactNative",
+    "slug": "julien_prrs-memo-reactnative",
     "entryPoint": "./app/index.js",
     "privacy": "public",
     "sdkVersion": "35.0.0",
