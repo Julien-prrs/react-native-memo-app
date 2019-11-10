@@ -58,8 +58,6 @@ export default class EditScreen extends React.Component {
 
     persistMemos = async (memos) => {
         global.hasUpdate = true;
-        console.log(this.state);
-        console.log(memos);
         await AsyncStorage.setItem('memos', JSON.stringify(memos));
         this.props.navigation.goBack();
     }

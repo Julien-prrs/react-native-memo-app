@@ -11,8 +11,8 @@ export default class HomeScreen extends React.Component {
 
         global.hasUpdate = true;
 
-        this.state = { memos: [] }
         this.flatListMemo = null;
+        this.state = { memos: [] }
 
         this.bindEvents();
     }

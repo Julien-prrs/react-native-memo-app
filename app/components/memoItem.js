@@ -8,7 +8,8 @@ export default class MemoItem extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = this.props.data;
+        this.firstInit = true;
+        this.state = props.data
     }
 
     swipeoutBtns = [{
@@ -20,9 +21,13 @@ export default class MemoItem extends React.Component {
             this.onPressDelete();
         },
     }]
-    
+
     componentDidMount() {
         this.setExcerpt();
+    }
+    
+    componentWillReceiveProps(newProps) {
+        this.setState({ ...newProps.data }, this.setExcerpt)
     }
 
     onPressOpen = () => {
@@ -36,9 +41,11 @@ export default class MemoItem extends React.Component {
     setExcerpt() {
         var output = [];
 
-        for (const key in this.state['content']) {
-            for (const subKey in this.state['content'][key].content) {
-                const el = this.state['content'][key].content[subKey];
+        console.log(this.state.content);
+
+        for (const key in this.state.content) {
+            for (const subKey in this.state.content[key].content) {
+                const el = this.state.content[key].content[subKey];
                 output.push(el.text);
             }
         }
