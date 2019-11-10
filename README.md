@@ -1,2 +1,2 @@
 ### TODO
-    * Write README file
+- Write README file
