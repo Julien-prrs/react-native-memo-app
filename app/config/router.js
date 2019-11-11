@@ -6,9 +6,6 @@ const Router = createStackNavigator({
     Home: {
         screen: views.HomeScreen
     },
-    Single: {
-        screen: views.SingleScreen
-    },
     Edit: {
         screen: views.EditScreen
     },
